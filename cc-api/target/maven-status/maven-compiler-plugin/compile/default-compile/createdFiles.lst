@@ -1,0 +1,7 @@
+com\cubic\soap\service\ObjectFactory.class
+com\cubic\soap\service\CustomerServiceRequestType.class
+com\cubic\soap\service\CustomerType.class
+com\cubic\soap\service\CustomerService.class
+com\cubic\soap\service\CustomerServiceResponseType.class
+com\cubic\soap\service\package-info.class
+com\cubic\soap\service\CustomerServicePortType.class

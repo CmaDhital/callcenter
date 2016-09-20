@@ -1,0 +1,121 @@
+package com.cubic.entity;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.cubic.common.CustomerVO;
+
+@Entity
+@Table(name="CUST_SECURITY_QUESTIONS")
+public class SecurityQuestionEntity {
+	
+	@Id
+	@Column(name="CUST_SEC_QID")
+	@GenericGenerator(name="billing_id", strategy= "foreign", parameters=@Parameter(name="property", value="customer"))
+	@GeneratedValue(generator="billing_id")
+	private Long securityQuestionId;
+	
+	@Column(name="CUST_QUES1_FRIEND")
+	private String firstQuest;
+	
+	@Column(name="CUST_ANS1_FRIEND")
+	private String firstAns;
+	
+	@Column(name="CUST_QUES2_MOM")
+	private String secondQuest;
+	
+	@Column(name="CUST_ANS2_MOM")
+	private String secondAns;
+	
+	@Column(name="CUST_QUES3_CITY")
+	private String thirdQuest;
+	
+	@Column(name="CUST_ANS3_CITY")
+	private String thirdAns;
+	
+	@ManyToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private CustomerVO customer;	
+	
+	
+	public Long getSecurityQuestionId() {
+		return securityQuestionId;
+	}
+	public void setSecurityQuestionId(Long securityQuestionId) {
+		this.securityQuestionId = securityQuestionId;
+	}
+	public String getFirstQuest() {
+		return firstQuest;
+	}
+	public void setFirstQuest(String firstQuest) {
+		this.firstQuest = firstQuest;
+	}
+	public String getFirstAns() {
+		return firstAns;
+	}
+	public void setFirstAns(String firstAns) {
+		this.firstAns = firstAns;
+	}
+	public String getSecondQuest() {
+		return secondQuest;
+	}
+	public void setSecondQuest(String secondQuest) {
+		this.secondQuest = secondQuest;
+	}
+	public String getSecondAns() {
+		return secondAns;
+	}
+	public void setSecondAns(String secondAns) {
+		this.secondAns = secondAns;
+	}
+	public String getThirdQuest() {
+		return thirdQuest;
+	}
+	public void setThirdQuest(String thirdQuest) {
+		this.thirdQuest = thirdQuest;
+	}
+	public String getThirdAns() {
+		return thirdAns;
+	}
+	public void setThirdAns(String thirdAns) {
+		this.thirdAns = thirdAns;
+	}
+	
+	public CustomerVO getCustomer() {
+		return customer;
+	}
+	public void setCustomer(CustomerVO customer) {
+		this.customer = customer;
+	}
+	@Override
+	public String toString() {
+		return "SecurityQuestionVO [securityQuestionId=" + securityQuestionId + ", firstQuest=" + firstQuest
+				+ ", firstAns=" + firstAns + ", secondQuest=" + secondQuest + ", secondAns=" + secondAns
+				+ ", thirdQuest=" + thirdQuest + ", thirdAns=" + thirdAns + "]";
+	}
+	public SecurityQuestionEntity() {
+	}
+	
+	public SecurityQuestionEntity(String firstQuest, String firstAns, String secondQuest,
+			String secondAns, String thirdQuest, String thirdAns) {
+		super();
+		this.firstQuest = firstQuest;
+		this.firstAns = firstAns;
+		this.secondQuest = secondQuest;
+		this.secondAns = secondAns;
+		this.thirdQuest = thirdQuest;
+		this.thirdAns = thirdAns;
+	}
+	
+
+}

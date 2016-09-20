@@ -1,0 +1,131 @@
+package com.cubic.entity;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import com.cubic.common.BillingAddressVO;
+import com.cubic.common.SecurityQuestionVO;
+import com.cubic.common.ShippingAddressVO;
+
+@Entity
+@Table(name="CUSTOMER")
+public class CustomerEntity {
+	
+	@Column(name="CUST_ID")
+	@Id
+	@SequenceGenerator(name = "cust_seq", sequenceName = "CUST_SEQ", allocationSize = 1)
+	@GeneratedValue(generator="cust_seq")
+	private Long pk;
+	
+	@Column(name="CUST_FIRST_NAME")
+	private String firstName;
+	
+	@Column(name="CUST_LAST_NAME")
+	private String lastName;
+	
+	@Column(name="CUST_DOB")
+	private String dateOfBirth;
+	
+	@Column(name="CUST_PHONE")
+	private String phone;
+	
+	@Column(name="CUST_EMAIL")
+	private String email;
+	
+	@OneToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL, mappedBy="customer")
+	private BillingAddressVO billingaddr;
+	
+	@OneToMany(cascade= CascadeType.ALL , mappedBy="customer")	
+	private ShippingAddressVO shippingaddr;
+	
+	@OneToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL, mappedBy="customer")
+	private SecurityQuestionVO securityqn;
+		
+	
+	public Long getPk() {
+		return pk;
+	}
+	public void setPk(Long pk) {
+		this.pk = pk;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+		
+	public BillingAddressVO getBillingaddr() {
+		return billingaddr;
+	}
+	public void setBillingaddr(BillingAddressVO billingaddr) {
+		this.billingaddr = billingaddr;
+	}
+	public ShippingAddressVO getShippingaddr() {
+		return shippingaddr;
+	}
+	public void setShippingaddr(ShippingAddressVO shippingaddr) {
+		this.shippingaddr = shippingaddr;
+	}
+	public SecurityQuestionVO getSecurityqn() {
+		return securityqn;
+	}
+	public void setSecurityqn(SecurityQuestionVO securityqn) {
+		this.securityqn = securityqn;
+	}
+	
+	public CustomerEntity() {
+	}
+	
+	public CustomerEntity(String firstName, String lastName, String dateOfBirth, String phone, String email) {
+		super();
+		
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.phone = phone;
+		this.email = email;
+	}
+	
+	@Override
+	public String toString() {
+		return "CustomerVO [pk=" + pk + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth="
+				+ dateOfBirth + ", phone=" + phone + ", email=" + email + "]";
+	}
+	
+	
+	
+
+}
